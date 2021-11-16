@@ -1,0 +1,16 @@
+{{ define "Post" }}
+<div class="post">
+    <p class="content">{{ .Content }}</p>
+    <ul class="replies">
+        {{ range .Replies }}
+            {{ template "Post" . }}
+        {{ end }}
+        <li>
+            <form action="/reply/{{ .ID }}">
+                <input type="text" name="content">
+                <input type="submit" value="reply...">
+            </form>
+        </li>
+    </ul>
+</div>
+{{ end }}
